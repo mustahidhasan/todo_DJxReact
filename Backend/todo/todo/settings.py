@@ -25,12 +25,13 @@ SECRET_KEY = 'django-insecure-0*-=4f(4xr$nb2an9)d)biyh4c67$9g6di&-x-=w7+gs#1f@0j
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    "corsheaders",
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -42,6 +43,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    "corsheaders.middleware.CorsMiddleware",
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -122,3 +124,20 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+AUTH_USER_MODEL = 'User.CustomUser'
+# Media files settings
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media' 
+# CORS settings
+CORS_ALLOW_ALL_ORIGINS = True
+# CSRF settings
+CSRF_TRUSTED_ORIGINS = ['http://localhost:3000', ]
+CSRF_COOKIE_SECURE = True  # Uncomment if using HTTPS in production
+# Session settings
+SESSION_COOKIE_SECURE = True  # Uncomment if using HTTPS in production
+# Static files settings
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+STATICFILES_DIRS = [
+    BASE_DIR / 'static',
+]
