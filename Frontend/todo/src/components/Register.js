@@ -1,11 +1,11 @@
 // src/Login.js
-function Todo() {
+function Register() {
   return (
     <div>
-      <h2>Todo Page</h2>
+      <h2>Register Page</h2>
       <p>Please enter your credentials to log in.</p>
     </div>
   );
 }
 
-export default Todo;
+export default Register;
