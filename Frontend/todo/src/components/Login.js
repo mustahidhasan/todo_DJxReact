@@ -1,7 +1,8 @@
-// src/Login.js
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from '../api/axios';
 import '../assets/css/login.css';
+import Register from './Register';
 
 function Login() {
   const [step, setStep] = useState('login');
@@ -15,6 +16,7 @@ function Login() {
   const [authToken, setAuthToken] = useState('');
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
+  const navigate = useNavigate();
 
   const resetMessages = () => {
     setError('');
@@ -30,7 +32,7 @@ function Login() {
       setSuccess('Login successful');
       localStorage.setItem('tokens', JSON.stringify(res.data.tokens));
       localStorage.setItem('user', JSON.stringify(res.data.user));
-      setStep('change');
+      navigate('/');
     } catch {
       setError('Invalid email or password');
     }
@@ -161,6 +163,8 @@ function Login() {
             </button>
           </>
         )}
+
+        {step === 'register' && <Register />}
 
         {error && <p className="msg error">{error}</p>}
         {success && <p className="msg success">{success}</p>}
