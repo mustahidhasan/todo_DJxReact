@@ -110,6 +110,9 @@ function Login() {
             <p className="link" onClick={() => setStep('forgot')}>
               Forgot Password?
             </p>
+            <p> Do not have an account?
+              <span className="link" onClick={() => setStep('register')}>Register</span>
+            </p>
           </>
         )}
 
