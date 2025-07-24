@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from '../api/axios';
 import '../assets/css/login.css';
 import Register from './Register';
+import logo from '../assets/vendor/todo_logo.gif';
 
 function Login() {
   const [step, setStep] = useState('login');
@@ -89,6 +90,7 @@ function Login() {
       <div className="auth-box">
         {step === 'login' && (
           <>
+            <img src={logo} alt="Logo" className="logo" /> 
             <h2 className="title">Welcome Back</h2>
             <form onSubmit={handleLogin} className="form">
               <input
@@ -111,7 +113,7 @@ function Login() {
               Forgot Password?
             </p>
             <p> Do not have an account?
-              <span className="link" onClick={() => setStep('register')}>Register</span>
+              <span className="link" onClick={() => setStep('register')}> Register</span>
             </p>
           </>
         )}
