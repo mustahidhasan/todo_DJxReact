@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from '../api/axios';
 import '../assets/css/login.css';
-import Register from './Register';
 import logo from '../assets/vendor/todo_logo.gif';
 
 function Login() {
@@ -85,12 +84,17 @@ function Login() {
     }
   };
 
+  const goToRegister = () => {
+    console.log('Navigating to /register');
+    navigate('/register');
+  };
+
   return (
     <div className="auth-container">
       <div className="auth-box">
         {step === 'login' && (
           <>
-            <img src={logo} alt="Logo" className="logo" /> 
+            <img src={logo} alt="Logo" className="logo" />
             <h2 className="title">Welcome Back</h2>
             <form onSubmit={handleLogin} className="form">
               <input
@@ -109,11 +113,27 @@ function Login() {
               />
               <button type="submit">Login</button>
             </form>
+
             <p className="link" onClick={() => setStep('forgot')}>
               Forgot Password?
             </p>
-            <p> Do not have an account?
-              <span className="link" onClick={() => setStep('register')}> Register</span>
+
+            <p>
+              Don't have an account?{' '}
+              <span
+                className="link"
+                role="button"
+                tabIndex={0}
+                onClick={(e) => {
+                  e.preventDefault();
+                  goToRegister();
+                }}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter') goToRegister();
+                }}
+              >
+                Register
+              </span>
             </p>
           </>
         )}
@@ -127,8 +147,8 @@ function Login() {
               value={forgotEmail}
               onChange={(e) => setForgotEmail(e.target.value)}
             />
-            <button onClick={handleForgot}>Send Reset Link</button>
-            <button className="secondary" onClick={() => setStep('login')}>
+            <button type="button" onClick={handleForgot}>Send Reset Link</button>
+            <button type="button" className="secondary" onClick={() => setStep('login')}>
               Back
             </button>
           </>
@@ -143,7 +163,7 @@ function Login() {
               value={newPassword}
               onChange={(e) => setNewPassword(e.target.value)}
             />
-            <button onClick={handleReset}>Reset</button>
+            <button type="button" onClick={handleReset}>Reset</button>
           </>
         )}
 
@@ -162,14 +182,12 @@ function Login() {
               value={newPassword}
               onChange={(e) => setNewPassword(e.target.value)}
             />
-            <button onClick={handleChange}>Change</button>
-            <button className="secondary" onClick={() => setStep('login')}>
+            <button type="button" onClick={handleChange}>Change</button>
+            <button type="button" className="secondary" onClick={() => setStep('login')}>
               Logout
             </button>
           </>
         )}
-
-        {step === 'register' && <Register />}
 
         {error && <p className="msg error">{error}</p>}
         {success && <p className="msg success">{success}</p>}
