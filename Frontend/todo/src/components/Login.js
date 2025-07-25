@@ -119,19 +119,11 @@ function Login() {
             </p>
 
             <p>
-              Don't have an account?{' '}
-              <span
-                className="link"
-                role="button"
-                tabIndex={0}
-                onClick={(e) => {
-                  e.preventDefault();
-                  goToRegister();
-                }}
-                onKeyDown={(e) => {
-                  if (e.key === 'Enter') goToRegister();
-                }}
-              >
+              Do not have an account?{' '}
+              <span className="link" onClick={(e) => {
+                e.preventDefault();
+                goToRegister();
+              }}>
                 Register
               </span>
             </p>
