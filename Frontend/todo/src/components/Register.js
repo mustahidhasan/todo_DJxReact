@@ -7,6 +7,7 @@ import logo from '../assets/vendor/todo_logo.gif';
 import '../assets/css/App.css';
 
 function Register() {
+  const [full_name, setFullName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -42,6 +43,13 @@ function Register() {
         <img src={logo} alt="Logo" className="logo" />
         <h2 className="title">Register Here</h2>
         <form onSubmit={handleRegister} className="form">
+          <input
+            type="text"
+            placeholder="Full Name"
+            value={full_name}
+            onChange={(e) => setFullName(e.target.value)}
+            required
+          />
           <input
             type="email"
             placeholder="Email"
