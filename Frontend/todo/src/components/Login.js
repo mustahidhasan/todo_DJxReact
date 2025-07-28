@@ -4,7 +4,7 @@ import axios from '../api/axios';
 import '../assets/css/login.css';
 import logo from '../assets/vendor/todo_logo.gif';
 
-function Login() {
+function Login({ onLogin }) {
   const [step, setStep] = useState('login');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -29,9 +29,10 @@ function Login() {
     try {
       const res = await axios.post('/auth/login/', { email, password });
       setAuthToken(res.data.tokens.access);
-      setSuccess('Login successful');
       localStorage.setItem('tokens', JSON.stringify(res.data.tokens));
       localStorage.setItem('user', JSON.stringify(res.data.user));
+      setSuccess('Login successful');
+      onLogin(); // Notify App
       navigate('/');
     } catch {
       setError('Invalid email or password');
@@ -119,13 +120,8 @@ function Login() {
             </p>
 
             <p>
-              Do not have an account?{' '}
-              <span className="link" onClick={(e) => {
-                e.preventDefault();
-                goToRegister();
-              }}>
-                Register
-              </span>
+              Don't have an account?{' '}
+              <span className="link" onClick={goToRegister}>Register</span>
             </p>
           </>
         )}
