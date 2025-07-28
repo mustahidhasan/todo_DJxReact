@@ -1,3 +1,8 @@
+
+.App {
+  font-family: Arial, sans-serif;
+}
+
 .navbar {
   background-color: #282c34;
   padding: 10px;
@@ -6,11 +11,41 @@
 .navbar ul {
   list-style-type: none;
   display: flex;
+  align-items: center;
+  width: 100%;
   gap: 15px;
+  margin: 0;
+  padding: 0;
 }
 
 .navbar ul li a {
   color: white;
   text-decoration: none;
   font-weight: bold;
+}
+
+.logout-wrapper {
+  margin-left: auto;
+}
+
+.logout-button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 8px;
+  transition: background-color 0.2s ease;
+}
+
+.logout-button:hover {
+  background-color: #3a3f47;
+}
+
+.logout-button svg {
+  color: #ff4d4d;
+  transition: color 0.2s ease;
+}
+
+.logout-button:hover svg {
+  color: white;
 }
