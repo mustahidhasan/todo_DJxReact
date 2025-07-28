@@ -23,7 +23,7 @@ function Register() {
     e.preventDefault();
     resetMessages();
     try {
-      await axios.post('/auth/register/', { email, password });
+      await axios.post('/auth/register/', { email, password, full_name });
       setSuccess('Registration successful!');
       setTimeout(() => {
         navigate('/login');
