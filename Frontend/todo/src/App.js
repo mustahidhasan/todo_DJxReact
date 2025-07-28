@@ -6,6 +6,7 @@ import Home from './components/Home';
 import Login from './components/Login';
 import Todo from './components/Todo';
 import Register from './components/Register';
+import { LogOut } from 'lucide-react';
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -31,7 +32,11 @@ function App() {
               <>
                 <li><Link to="/">Home</Link></li>
                 <li><Link to="/todo">Todo</Link></li>
-                <li><button onClick={handleLogout}>Logout</button></li>
+                <li className="logout-wrapper">
+                  <button onClick={handleLogout} className="logout-button" title="Logout">
+                    <LogOut size={20} />
+                  </button>
+                </li>
               </>
             ) : (
               <>
